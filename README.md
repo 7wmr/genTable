@@ -1,5 +1,7 @@
 # GENERATE TABLE
 
+> A function to generate a unicode table for presenting data.
+
 ## Details
 
 The function will accept a JavaScript object with the following properties:
