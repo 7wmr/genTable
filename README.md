@@ -44,7 +44,7 @@ If the `markdown` property is set to `true` then the table will be outputed in t
 
 If the `headers` property is set to `true` the top row of the table will be set to uppercase. It is not expected that headers would contain line breaks.
 
-See below a sample of a basic table (with a markdown like format) that will be generated if `basic` is set to `true`.
+See below a sample of a basic table (with a markdown like format) that will be generated if the `basic` property is set to `true`.
 
 ```
 *----------*------*
