@@ -11,7 +11,7 @@ The function will accept a JavaScript object with the following properties:
 | `data` | Array | true | an array of arrays detailing the rows and columns of the table. |
 | `markdown` | Boolean | false | will default to ASCII table if not set (or set to `false`). |
 | `headers` | Boolean | false | will convert top row to uppercase if set to `true`. |
-
+| `basic` | Boolean | false | will convert to a basic table format if set to `true`. |
 
 ```javascript
 var data = [
@@ -43,6 +43,18 @@ If the `markdown` property is set to `true` then the table will be outputed in t
 ```
 
 If the `headers` property is set to `true` the top row of the table will be set to uppercase. It is not expected that headers would contain line breaks.
+
+See below a sample of a basic table (with a markdown like format) that will be generated if `basic` is set to `true`.
+
+```
+*----------*------*
+| Name     | Age  |
+|----------|------|
+| Richard  | 30   |
+|----------|------|
+| John     | 31   |
+*----------*------*
+```
 
 ## Examples
 
