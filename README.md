@@ -36,7 +36,7 @@ If the cells contain any tab `\t` characters they will be replace by **4** space
 If the `markdown` property is set to `true` then the table will be outputed in the standard Markdown format as shown below. This should not be used for tables with cells that contain line breaks.
 
 ```
-| Name    | Age |
+| NAME    | AGE |
 | ------- | --- |
 | Richard | 30  |
 | John    | 31  |
@@ -48,7 +48,7 @@ See below a sample of a basic table (with a markdown like format) that will be g
 
 ```
 *----------*------*
-| Name     | Age  |
+| NAME     | AGE  |
 |----------|------|
 | Richard  | 30   |
 |----------|------|
