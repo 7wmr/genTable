@@ -9,7 +9,7 @@ The function will accept a JavaScript object with the following properties:
 | Name | Type | Required | Comment |
 | :---- | :----: | :----: | :------ |
 | `data` | Array | true | an array of arrays detailing the rows and columns of the table. |
-| `markdown` | Boolean | false | will default to Unicode table if not set (or set to `false`). |
+| `markdown` | Boolean | false | will default to unicode table if not set (or set to `false`). |
 | `headers` | Boolean | false | will convert top row to uppercase if set to `true`. |
 | `basic` | Boolean | false | will convert to a basic table format if set to `true`. |
 
