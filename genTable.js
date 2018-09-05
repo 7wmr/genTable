@@ -16,7 +16,7 @@ var genTable = function (obj) {
 				// Set all of the column widths for first row as a baseline.
 				col_widths.push(b.length);
 			} else {
-				if (obj.markdown) {
+				if (obj.markdown || obj.basic) {
 					if (b.length > col_widths[j]) {
 						col_widths[j] = b.length;
 					};
@@ -80,7 +80,7 @@ var genTable = function (obj) {
 		a = align(a, col_widths, ' ');
 	};
 
-	if (obj.markdown) {
+	if (obj.markdown || obj.basic) {
 		// Markdown Format
 		var head = [];
 		for (var i = 0; i < obj.data[0].length; i++) {
@@ -94,7 +94,7 @@ var genTable = function (obj) {
 			obj.data[i] = '| ' + a.join(' | ').replace(/\n|\r\n/g, ' ') + ' |';
 		};
 	} else {
-		// ASCII Format
+		// Unicode Format
 		for (var i = 0; i < obj.data.length; i++) {
 			var a = obj.data[i];
 			a = align(a, col_widths, ' ');
@@ -133,14 +133,31 @@ var genTable = function (obj) {
 			};
 		};
 
-		if (obj.headers != false) {
-			obj.data[0] = obj.data[0].toUpperCase();
-		};
-
 		// Insert horisontal line [top]
 		obj.data.splice(0, 0, horisontal('\u250C', '\u252C', '\u2510'));
 		// Insert horisontal line [bottom]
 		obj.data.push(horisontal('\u2514', '\u2534', '\u2518'));
+	};
+
+	if (obj.headers != false) {
+		obj.data[0] = obj.data[0].toUpperCase();
+	};
+
+	if (obj.basic) {
+		obj.data[1] = obj.data[1].replace(/ /g, '-')
+		var row_break = obj.data[1];
+		var data = [ obj.data[0], row_break ]
+		for (var i = 2; i < obj.data.length; i++) {
+			data.push(obj.data[i]);
+			if (i != obj.data.length - 1) {
+				data.push(row_break);
+			};
+		};
+		var vertical = row_break.replace(/\|/g, '*');
+
+		data.splice(0, 0, vertical);
+		data.splice(data.length, 0, vertical);
+		obj.data = data;
 	};
 
 	return obj.data.join('\n');
