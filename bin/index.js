@@ -1,6 +1,5 @@
 #!/usr/bin/env node
 
-const yargs = require("yargs");
 const fs = require("fs");
 
 const genTable = function (data) {
@@ -126,16 +125,7 @@ const genTable = function (data) {
 	return data.join('\n');
 };
 
-const options = yargs
- .usage("Usage: -n <name>")
- .option("n", { alias: "name", describe: "Your name", type: "string", demandOption: true })
- .argv;
-
-const greeting = `Hello, ${options.name}!`;
-
 var data = fs.readFileSync(0).toString()
-
 data = JSON.parse(data)
 var table = genTable(data)
-
 console.log(table)
