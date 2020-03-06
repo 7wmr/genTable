@@ -1,0 +1,24 @@
+{
+  "name": "table-cli",
+  "version": "1.0.0",
+  "description": "> A function to generate a unicode table for presenting data.",
+  "bin": {
+    "table-cli": "./bin/index.js"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/7wmr/table-cli.git"
+  },
+  "author": "Richard Neave",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/7wmr/table-cli/issues"
+  },
+  "homepage": "https://github.com/7wmr/table-cli#readme",
+  "dependencies": {
+    "yargs": "^13.2.4"
+  }
+}
