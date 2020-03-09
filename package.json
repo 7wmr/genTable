@@ -19,5 +19,6 @@
   },
   "homepage": "https://github.com/7wmr/table-cli#readme",
   "dependencies": {
+    "chalk": "^3.0.0"
   }
 }

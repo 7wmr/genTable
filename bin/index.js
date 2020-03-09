@@ -1,11 +1,13 @@
 #!/usr/bin/env node
 
-const fs = require("fs");
+const fs = require("fs"),
+      chalk = require("chalk");
 
 const genTable = function (data) {
   // Determine column widths and row heights.
 	var col_widths = [];
 	var row_heights = [];
+
 	// Loop through rows.
 	for (var i = 0; i < data.length; i++) {
 		var a = data[i];
@@ -43,8 +45,8 @@ const genTable = function (data) {
 		col_widths[i] = col_widths[i] + 1;
 	};
 
-	var horisontal = function (left, middle, right) {
-		// Generate the horisontal row seperators.
+  var horizontal = function (left, middle, right) {
+		// Generate the horizontal row seperators.
 		var row = left;
 		for (var i = 0; i < col_widths.length; i++) {
 			var l = col_widths[i];
@@ -84,6 +86,9 @@ const genTable = function (data) {
     a = align(a, col_widths, ' ');
     if (row_heights[i] == 1) {
       data[i] = '\u2502 ' + a.join(' \u2502 ') + ' \u2502';
+      // if (i == 0) {
+      //   data[i] = '\033[1m' + data[i] + '\033[0m';
+      // };
     } else {
       var grid = [];
       for (var j = 0; j < row_heights[i]; j++) {
@@ -109,18 +114,22 @@ const genTable = function (data) {
     };
   };
 
-  var insert = horisontal('\u251C', '\u253C', '\u2524');
-  // Insert horisontal lines [middle]
+  var insert = horizontal('\u251C', '\u253C', '\u2524');
+  // Insert horizontal lines [middle]
   for (var i = 0; i < data.length; i++) {
     if (i % 2) {
       data.splice(i, 0, insert);
     };
   };
 
-  // Insert horisontal line [top]
-  data.splice(0, 0, horisontal('\u250C', '\u252C', '\u2510'));
-  // Insert horisontal line [bottom]
-  data.push(horisontal('\u2514', '\u2534', '\u2518'));
+  // Insert horizontal line [top]
+  data.splice(0, 0, horizontal('\u250C', '\u252C', '\u2510'));
+  // Insert horizontal line [bottom]
+  data.push(horizontal('\u2514', '\u2534', '\u2518'));
+
+  // Wrap the text in each header cell with bold tags
+  //data[1] = data[1].replace(/(\w+)/g, '\033[1m$1\033[0m')
+  data[1] = data[1].replace(/(\w+)/g, chalk.hex('#6da0fe').bold('$1'))
 
 	return data.join('\n');
 };
@@ -128,4 +137,9 @@ const genTable = function (data) {
 var data = fs.readFileSync(0).toString()
 data = JSON.parse(data)
 var table = genTable(data)
+
+table = table.replace(/\u2718/g, chalk.hex('#ff2500')('\u2718')) // Cross
+  .replace(/\u2714/g, chalk.hex('#4cb26e')('\u2714')) // Tick
+
+
 console.log(table)
